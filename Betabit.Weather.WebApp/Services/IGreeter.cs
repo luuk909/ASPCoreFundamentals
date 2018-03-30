@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Betabit.Weather.WebApp
+namespace Betabit.Weather.WebApp.Services
 {
     public interface IGreeter
     {

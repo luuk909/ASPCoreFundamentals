@@ -1,15 +1,46 @@
-﻿using System;
+﻿using Betabit.Weather.WebApp.Models;
+using Betabit.Weather.WebApp.Services;
+using Betabit.Weather.WebApp.ViewModels.Home;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Betabit.Weather.WebApp.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        private IRestaurantData _restaurantData;
+        private IGreeter _greeter;
+
+        public HomeController(IRestaurantData restaurantData, IGreeter greeter)
         {
-            return "Home";
+            _restaurantData = restaurantData;
+            _greeter = greeter;
+        }
+        public IActionResult Index()
+        {
+            var model = new HomeIndexViewModel();
+            model.Restaurants = _restaurantData.GetAll();
+            model.CurrentMessage = _greeter.GetMessageOfTheDay();
+
+            return View(model);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if(model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
