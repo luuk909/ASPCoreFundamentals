@@ -38,9 +38,28 @@ namespace Betabit.Weather.WebApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(RestaurantEditModel model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            
+            var newRestaurant = new Restaurant()
+            {
+                Name = model.Name,
+                Cuisine = model.Cuisine
+            };
+
+            newRestaurant = _restaurantData.Add(newRestaurant);
+
+            return RedirectToAction(nameof(Details), newRestaurant);
         }
     }
 }
