@@ -1,7 +1,7 @@
 ﻿using Betabit.Weather.WebApp.Models;
 using System.Collections.Generic;
 
-namespace Betabit.Weather.WebApp.ViewModels.Home
+namespace Betabit.Weather.WebApp.ViewModels
 {
     public class HomeIndexViewModel
     {

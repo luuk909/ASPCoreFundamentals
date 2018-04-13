@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Betabit.Weather.WebApp.Models;
 
-namespace Betabit.Weather.WebApp.ViewModels.Home
+namespace Betabit.Weather.WebApp.ViewModels
 {
     public class RestaurantEditModel
     {

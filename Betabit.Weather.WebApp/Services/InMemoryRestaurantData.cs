@@ -32,6 +32,11 @@ namespace Betabit.Weather.WebApp.Services
             return newRestaurant;
         }
 
+        public Restaurant Update(Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return _restaurants.OrderBy(r => r.Name);

@@ -1,14 +1,16 @@
 ﻿using Betabit.Weather.WebApp.Models;
 using Betabit.Weather.WebApp.Services;
-using Betabit.Weather.WebApp.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Betabit.Weather.WebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Betabit.Weather.WebApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IRestaurantData _restaurantData;
@@ -19,6 +21,8 @@ namespace Betabit.Weather.WebApp.Controllers
             _restaurantData = restaurantData;
             _greeter = greeter;
         }
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = new HomeIndexViewModel();
